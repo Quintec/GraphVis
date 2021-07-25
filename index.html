@@ -74,8 +74,8 @@
       applyCharges() {
         let vertices = Object.keys(this.adj);
         for (var i = 0; i < vertices.length; i++) {
+          let na = this.nodes[i];
           for (var j = i + 1; j < vertices.length; j++) {
-            let na = this.nodes[i];
             let nb = this.nodes[j];
             let dx = na.x - nb.x;
             let dy = na.y - nb.y;
@@ -87,6 +87,19 @@
           }
         }
       }
+
+      /* ropes currently too stiff for this
+      applyMouse(mx, my) {
+        let vertices = Object.keys(this.adj);
+        for (var i = 0; i < vertices.length; i++) {
+          let na = this.nodes[i];
+          let dmx = na.x - mx;
+          let dmy = na.y - my;
+
+          na.vx += SPEED * 10 / (dmx + 1);
+          na.vy += SPEED * 10 / (dmy + 1);
+        }
+      }*/
 
       //connect nodes with length of rope
       applyRopes() {
@@ -117,6 +130,7 @@
     var g = new Graph();
     g.addEdge('a', 'b', 2);
     g.addEdge('a', 'c', 5);
+    g.addEdge('b', 'c', 6)
 
     function setup() {
       let can = createCanvas(WIDTH, HEIGHT);
@@ -130,6 +144,21 @@
       g.applyRopes();
       g.applyCharges();
       g.step();
+
+      //g.applyMouse(mouseX, mouseY);
+
+      let vertices = Object.keys(g.adj);
+      for (var i = 0; i < vertices.length; i++) {
+          for (var j = i + 1; j < vertices.length; j++) {
+            let na = g.nodes[i];
+            let nb = g.nodes[j];
+            if (Object.keys(g.adj[na.name]).includes(nb.name)) {
+              line(na.x, na.y, nb.x, nb.y);
+              textAlign(RIGHT, TOP);
+              text(g.adj[na.name][nb.name], (na.x + nb.x) / 2, (na.y + nb.y) / 2);
+            }
+          }
+      }
 
       for (let node of g.nodes) {
         circle(node.x, node.y, SIZE);

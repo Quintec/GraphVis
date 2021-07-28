@@ -3,8 +3,8 @@ function setup() {
   can.parent('wrap');
   frameRate(30);
   g.addEdge('a', 'b', 2);
-  g.addEdge('a', 'c', 5);
-  g.addEdge('b', 'c', 6)
+  g.addEdge('a', 'c', 2);
+  g.addEdge('b', 'c', 2)
 }
 
 function draw() {

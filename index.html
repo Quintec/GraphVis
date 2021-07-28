@@ -15,16 +15,27 @@
     #wrap {
       margin-top: 5px;
     }
+    #ex {
+      margin-left: 5px;
+      background-color: #dcdcdc;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
 </head>
 
 <body>
-  <div id="settings">
-  <p>Import graph:</p>
-  <textarea id="inp" rows="8" cols="16"/></textarea><br>
-  <button onclick="loadGraph()" class="pure-button pure-button-primary">Load</button>
+
+  <div class="pure-g">
+    <div class="pure-u-1-8">
+      <p>Import graph:</p>
+      <textarea id="inp" rows="8" cols="16"/></textarea><br>
+      <button onclick="loadGraph()" class="pure-button pure-button-primary">Load</button>
+    </div>
+    <div class="pure-u-1-8">
+      <p>Try:<br><div id="ex"><code>a b 3<br>b c 5<br>c a 7</code></div></p>
+    </div>
   </div>
+
   <div id="wrap"></div>
 
   <script type="text/javascript" src="graph.js"></script>
@@ -34,7 +45,7 @@
 
     let SPEED = 0.02;
 
-    let TENSION = 50;
+    let TENSION = 30;
     let SIZE = 30;
     let CHARGE = 5;
 
